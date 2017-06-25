@@ -178,11 +178,11 @@ function createCaptureProcess(modelName) {
       var captureProcess = childProcess.spawn('rtmpdump', spawnArguments);
 
       captureProcess.stdout.on('data', function(data) {
-        printMsg(data.toString);
+        printMsg(data.toString());
       });
 
       captureProcess.stderr.on('data', function(data) {
-        printMsg(data.toString);
+        printMsg(data.toString());
       });
 
       captureProcess.on('close', function(code) {
@@ -205,7 +205,7 @@ function createCaptureProcess(modelName) {
             } else {
               printErrorMsg('[' + colors.green(modelName) + '] ' + err.toString());
             }
-          } else if (stats.size == 0 || stats.size < (config.minFileSizeMb * 1048576)) {
+          } else if (stats.size <= (config.minFileSizeMb * 1048576)) {
             fs.unlink(config.captureDirectory + '/' + filename, function(err) {
               // do nothing, shit happens
             });
